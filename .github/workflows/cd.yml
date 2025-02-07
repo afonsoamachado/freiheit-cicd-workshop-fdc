@@ -57,7 +57,7 @@ jobs:
 
           - name: deploy
             run: |
-              gcloud run deploy cicd-14 \
+              gcloud run deploy flutter14 \
                 --image europe-west3-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REGISTRY }}/flutter14:v1 \
                 --region us-central
           

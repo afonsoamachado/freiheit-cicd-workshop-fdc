@@ -48,14 +48,11 @@ jobs:
 
           # Configure Docker authentication for interacting with Artifact Registry, allowing you to push or pull Docker images securely.
           # Build the docker image and push top artifact registry.
-          - name: Auth gcloud
+          - name: Build and Push Docker Image 🐳
             run: |
               gcloud auth configure-docker --quiet
               gcloud auth configure-docker europe-west3-docker.pkg.dev --quiet
-          
-          - name: Build and Push Docker Image 🐳
-            run: |
-              docker build .
+              docker build -t europe-west3-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REGISTRY }}/flutter14:v1 .
               docker push europe-west3-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_ARTIFACT_REGISTRY }}/flutter14:v1
 
           - name: deploy
